@@ -69,3 +69,47 @@ for (let i = 0; i < hourIDArray.length; i++){
 }
 
 checkBoxColor();
+
+// event listener for buttons to store input and button ID to local storage
+let buttonIDArray = [];
+let inputValueArray = [];
+let sectionBoxEL = $('.time-block');
+console.log(sectionBoxEL);
+
+sectionBoxEL.on("click", ".btn", function(){
+
+  let buttonId = $(this).attr('id');
+  console.log(buttonId);
+  let input = $(this).siblings('.description').val().trim();
+  if(input === "") {
+    return;
+  }
+  buttonIDArray.push(buttonId);
+  inputValueArray.push(input);
+  localStorage.setItem("buttonID", JSON.stringify(buttonIDArray));
+  localStorage.setItem("input", JSON.stringify(inputValueArray));
+
+})
+
+// function to print text from local storage
+function printText(){
+let buttonArray = ["btn-9", "btn-10", "btn-11", "btn-12", "btn-13", "btn-14", "btn-15", "btn-16", "btn-17", "btn-18",]
+let storedButtonID = JSON.parse(localStorage.getItem("buttonID"));
+let storedInput = JSON.parse(localStorage.getItem("input"));
+
+if((storedButtonID !== null) && (storedInput !== null)) {
+  buttonIDArray = storedButtonID;
+  inputValueArray = storedInput;
+  for(let i = 0; i < storedInput.length; i++){
+    let buttonIDStorred = buttonIDArray[i];
+    let textValue = inputValueArray[i];
+    for(let i = 0; i < buttonArray.length; i++){
+      if(buttonIDStorred === buttonArray[i]) {
+        $(`#${buttonArray[i]}`).siblings('.description').text(textValue);
+      }
+    }
+    
+  }
+}
+}
+printText();
