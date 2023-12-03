@@ -3,7 +3,7 @@ Modifying existing web app  Work Day Scheduler
 
 ## Description
 
-I made web site with a game that have some questions about JavaScript. I wanted to make a game that starts from the button and then loop some questions. A timer should work during the game ,and if you choose some answer time is added or subtracted. After the game I want to add my initials to the form and save it with my score.
+I wanted to adjust existing calendar application, so I can add some fuctionality to it. I added changing color at time blocks section depending what time is now. Also, I  added a function to store my input in box to local storage when I click the save button.
 
 ## Table of Contets
 
@@ -19,7 +19,7 @@ In this section I provided screenshots of the Deployed Website Application.
 
 ## Links
 
-In this section I added links to the deployed application and to the GitHub repositorie with the original codebase.
+In this section I added links to the deployed application and to the GitHub repositories with the original codebase and modified code.
 
 
 Deployed application
