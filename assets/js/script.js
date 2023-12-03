@@ -34,6 +34,38 @@ time();
 // interval for repeating time function every second
 setInterval(function(){
   time();
-  let today = dayjs();
   
+  
+  // return hourNow;
 }, 1000);
+
+let hourIDArrayEL = [$('#hour-9'), $('#hour-10'), $('#hour-11'), $('#hour-12'), $('#hour-13'), $('#hour-14'), $('#hour-15'), $('#hour-16'), $('#hour-17'), $('#hour-18')];
+let hourIDArray = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
+
+// console.log(hourIDArrayEL);
+// for (let i = 0; i < hourIDArray.length; i++){
+//   if(hourIDArray[i] == hourNow){
+//     hourIDArrayEL[i].removeClass("present");
+//   }
+// }
+
+// function to check time and change color of section depending of current time
+function checkBoxColor() {
+  let today = dayjs();
+  let hourNow = today.format("H");
+  console.log(hourNow);
+  // console.log(hourIDArrayEL);
+for (let i = 0; i < hourIDArray.length; i++){
+  if(hourIDArray[i] == hourNow){
+    hourIDArrayEL[i].addClass("present")
+  } 
+  if (hourIDArray[i] < hourNow){
+    hourIDArrayEL[i].addClass("past");
+  } 
+  if (hourIDArray[i] > hourNow) {
+    hourIDArrayEL[i].addClass("future");
+  }
+}
+}
+
+checkBoxColor();
