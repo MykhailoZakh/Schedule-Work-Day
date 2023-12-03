@@ -69,9 +69,6 @@ sectionBoxEL.on("click", ".btn", function(){
   let buttonId = $(this).attr('id');
   console.log(buttonId);
   let input = $(this).siblings('.description').val().trim();
-  if(input === "") {
-    return;
-  }
   buttonIDArray.push(buttonId);
   inputValueArray.push(input);
   localStorage.setItem("buttonID", JSON.stringify(buttonIDArray));
