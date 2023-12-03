@@ -25,47 +25,37 @@
 // function for today's time listenner and printing it at main screen
 function time(){
   let today = dayjs();
-  // console.log('second');
-  
   $('#today-time').text(today.format('[Time now: ] MMMM DD, YYYY HH:mm:ss'));  
 }
+
 time();
 
 // interval for repeating time function every second
 setInterval(function(){
   time();
-  
-  
-  // return hourNow;
 }, 1000);
 
-let hourIDArrayEL = [$('#hour-9'), $('#hour-10'), $('#hour-11'), $('#hour-12'), $('#hour-13'), $('#hour-14'), $('#hour-15'), $('#hour-16'), $('#hour-17'), $('#hour-18')];
-let hourIDArray = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 
-// console.log(hourIDArrayEL);
-// for (let i = 0; i < hourIDArray.length; i++){
-//   if(hourIDArray[i] == hourNow){
-//     hourIDArrayEL[i].removeClass("present");
-//   }
-// }
+
 
 // function to check time and change color of section depending of current time
 function checkBoxColor() {
+  let hourIDArrayEL = [$('#hour-9'), $('#hour-10'), $('#hour-11'), $('#hour-12'), $('#hour-13'), $('#hour-14'), $('#hour-15'), $('#hour-16'), $('#hour-17'), $('#hour-18')];
+  let hourIDArray = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
   let today = dayjs();
   let hourNow = today.format("H");
-  console.log(hourNow);
-  // console.log(hourIDArrayEL);
-for (let i = 0; i < hourIDArray.length; i++){
-  if(hourIDArray[i] == hourNow){
-    hourIDArrayEL[i].addClass("present")
-  } 
-  if (hourIDArray[i] < hourNow){
-    hourIDArrayEL[i].addClass("past");
-  } 
-  if (hourIDArray[i] > hourNow) {
-    hourIDArrayEL[i].addClass("future");
+  
+  for (let i = 0; i < hourIDArray.length; i++){
+    if(hourIDArray[i] == hourNow){
+      hourIDArrayEL[i].addClass("present")
+    } 
+    if (hourIDArray[i] < hourNow){
+      hourIDArrayEL[i].addClass("past");
+    }  
+    if (hourIDArray[i] > hourNow) {
+      hourIDArrayEL[i].addClass("future");
+    }
   }
-}
 }
 
 checkBoxColor();
@@ -74,8 +64,6 @@ checkBoxColor();
 let buttonIDArray = [];
 let inputValueArray = [];
 let sectionBoxEL = $('.time-block');
-console.log(sectionBoxEL);
-
 sectionBoxEL.on("click", ".btn", function(){
 
   let buttonId = $(this).attr('id');
@@ -93,23 +81,23 @@ sectionBoxEL.on("click", ".btn", function(){
 
 // function to print text from local storage
 function printText(){
-let buttonArray = ["btn-9", "btn-10", "btn-11", "btn-12", "btn-13", "btn-14", "btn-15", "btn-16", "btn-17", "btn-18",]
-let storedButtonID = JSON.parse(localStorage.getItem("buttonID"));
-let storedInput = JSON.parse(localStorage.getItem("input"));
+  let buttonArray = ["btn-9", "btn-10", "btn-11", "btn-12", "btn-13", "btn-14", "btn-15", "btn-16",   "btn-17", "btn-18",]
+  let storedButtonID = JSON.parse(localStorage.getItem("buttonID"));
+  let storedInput = JSON.parse(localStorage.getItem("input"));
 
-if((storedButtonID !== null) && (storedInput !== null)) {
-  buttonIDArray = storedButtonID;
-  inputValueArray = storedInput;
-  for(let i = 0; i < storedInput.length; i++){
-    let buttonIDStorred = buttonIDArray[i];
-    let textValue = inputValueArray[i];
-    for(let i = 0; i < buttonArray.length; i++){
-      if(buttonIDStorred === buttonArray[i]) {
-        $(`#${buttonArray[i]}`).siblings('.description').text(textValue);
+  if((storedButtonID !== null) && (storedInput !== null)) {
+    buttonIDArray = storedButtonID;
+    inputValueArray = storedInput;
+    for(let i = 0; i < storedInput.length; i++){
+      let buttonIDStorred = buttonIDArray[i];
+      let textValue = inputValueArray[i];
+      for(let i = 0; i < buttonArray.length; i++){
+        if(buttonIDStorred === buttonArray[i]) {
+         $(`#${buttonArray[i]}`).siblings('.description').text(textValue);
+        }
       }
-    }
     
+    }
   }
-}
 }
 printText();
